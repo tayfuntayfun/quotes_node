@@ -33,7 +33,8 @@ function App() {
         </div>
       </div>
       <div className='button-box'>
-        <button 
+        <button
+            type='button' 
             style={{backgroundColor:'#263238',
                     border: '1px solid gray',
                     borderRadius:'3px',
