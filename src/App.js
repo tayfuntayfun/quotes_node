@@ -3,21 +3,19 @@ import './App.css';
 
 function App() {
 
-  const [quotes, setQuotes] = useState ([])
+  const [quotes, setQuotes] = useState ({})
+
+  const quote_api_url= 'https://cyf-tayfuntayfun.herokuapp.com/quotes/random';
+
+  const getRandomQuote = () => {
+    fetch(quote_api_url)
+      .then(response => response.json())
+      .then((data) => setQuotes(data))
+  };
 
   useEffect (()=> {
-    const fetchData = async () => {
-    const result = await fetch('https://cyf-tayfuntayfun.herokuapp.com/quotes/random')
-      .then(response => response.json())
-      setQuotes(result);
-      console.log(quotes)
-    }
-  fetchData();
+    getRandomQuote();
   }, []);
-
-    const handleClick =() => {
-      window.location.reload(true)
-    }
 
   return (
     quotes ? 
@@ -42,7 +40,7 @@ function App() {
                     padding:'10px',
                     color:'white'
                     }}
-            onClick={handleClick}
+            onClick={getRandomQuote}
             ><b>New Quote</b>
         </button>
       </div>
